@@ -159,3 +159,8 @@ The device connects to the strongest known WiFi, syncs the RTC via NTP, then beg
 - **History & Analytics**: temperature min/max/avg, humidity and air quality trends, atmospheric pressure chart, sensor event log
 - **Auto WiFi**: scans for strongest known network; falls back to manual list on boot failure
 - **Boot sync**: device restores last known readings from BigQuery on startup, even after a power cut
+
+
+### AI use 
+
+Designed, integrated, and tested by the project members. Some components were partially or fully generated, improved and debugged using AI tools.
