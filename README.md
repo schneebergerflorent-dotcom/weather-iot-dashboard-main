@@ -6,7 +6,6 @@ An IoT system that collects indoor environmental data (temperature, humidity, ai
 
 **Live dashboard:** https://weather-dashboard-297113273467.europe-west6.run.app
 
-**GitHub repo:** 
 
 
 
