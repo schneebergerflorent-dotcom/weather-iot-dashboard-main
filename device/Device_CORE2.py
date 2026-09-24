@@ -20,7 +20,7 @@ import time
 # ---------------- CONFIG ----------------
 CLOUD_BASE = "https://weather-flask-297113273467.europe-west6.run.app"
 SOURCE_ID = "F"
-PASSWD = "Cloud"
+PASSWD = "DEVICE_PASSWD"
 
 #Put your most reliable WiFi first. If scan fails, the code manually tries each WiFi in this order.
 WIFI_LIST = [
