@@ -1,0 +1,96 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # ── Detect which directories changed ────────────────────────────────────────
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      middleware: ${{ steps.filter.outputs.middleware }}
+      dashboard:  ${{ steps.filter.outputs.dashboard }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            middleware:
+              - 'middleware/**'
+            dashboard:
+              - 'dashboard/**'
+
+  # ── Deploy middleware (Flask API) ────────────────────────────────────────────
+  deploy-middleware:
+    name: Deploy Middleware
+    needs: changes
+    if: needs.changes.outputs.middleware == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & push image
+        working-directory: middleware
+        run: |
+          gcloud builds submit \
+            --tag gcr.io/finial-project-494209/weather-flask \
+            --project finial-project-494209 \
+            .
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy weather-flask \
+            --image gcr.io/finial-project-494209/weather-flask \
+            --platform managed \
+            --region europe-west6 \
+            --allow-unauthenticated \
+            --project finial-project-494209 \
+            --set-env-vars "\
+          GCP_PROJECT=finial-project-494209,\
+          BQ_DATASET=Lab4_IoT_datasets,\
+          BQ_TABLE=weather-records,\
+          OWM_API_KEY=${{ secrets.OWM_API_KEY }},\
+          OWM_CITY=${{ vars.OWM_CITY || 'Lausanne' }},\
+          OWM_COUNTRY=${{ vars.OWM_COUNTRY || 'CH' }},\
+          DEVICE_PASSWD=${{ secrets.DEVICE_PASSWD }}"
+
+  # ── Deploy dashboard (Streamlit) ─────────────────────────────────────────────
+  deploy-dashboard:
+    name: Deploy Dashboard
+    needs: changes
+    if: needs.changes.outputs.dashboard == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & push image
+        working-directory: dashboard
+        run: |
+          gcloud builds submit \
+            --tag gcr.io/finial-project-494209/weather-dashboard \
+            --project finial-project-494209 \
+            .
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy weather-dashboard \
+            --image gcr.io/finial-project-494209/weather-dashboard \
+            --platform managed \
+            --region europe-west6 \
+            --allow-unauthenticated \
+            --project finial-project-494209 \
+            --set-env-vars "API_BASE_URL=https://weather-flask-297113273467.europe-west6.run.app"
