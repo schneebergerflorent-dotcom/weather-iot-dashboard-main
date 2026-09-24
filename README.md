@@ -85,7 +85,7 @@ All secrets are passed as environment variables at deploy time. The middleware w
 |----------|---------|----------|-------------|
 | `OWM_API_KEY` | middleware | **yes** | OpenWeatherMap API key |
 | `OPENROUTER_API_KEY` | middleware | **yes** | OpenRouter key (LLM + TTS + STT) |
-| `DEVICE_PASSWD` | middleware + device | no | Shared password for device auth (SHA-256 hashed); defaults to `Cloud1802` |
+| `DEVICE_PASSWD` | middleware + device | no | Shared password for device auth (SHA-256 hashed); defaults to `Cloud` |
 | `GCP_PROJECT` | middleware | no | Google Cloud project ID |
 | `BQ_DATASET` | middleware | no | BigQuery dataset name |
 | `BQ_TABLE` | middleware | no | BigQuery table name |
