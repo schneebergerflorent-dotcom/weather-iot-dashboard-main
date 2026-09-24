@@ -2,7 +2,7 @@
 
 An IoT system that collects indoor environmental data (temperature, humidity, air quality) using an M5Stack CORE2 device, streams it to Google BigQuery via a Flask middleware, and visualises it on a live Streamlit dashboard — with AI-powered voice recommendations triggered by motion detection. (The IoT device system has been disconnected)
 
-**Demo video:** [YouTube — * to do*]
+**Demo video:** [YouTube — ***]
 
 **Live dashboard:** https://weather-dashboard-297113273467.europe-west6.run.app
 
