@@ -1,6 +1,6 @@
 # Smart Indoor Weather Station
 
-An IoT system that collects indoor environmental data (temperature, humidity, air quality) using an M5Stack CORE2 device, streams it to Google BigQuery via a Flask middleware, and visualises it on a live Streamlit dashboard — with AI-powered voice recommendations triggered by motion detection.
+An IoT system that collects indoor environmental data (temperature, humidity, air quality) using an M5Stack CORE2 device, streams it to Google BigQuery via a Flask middleware, and visualises it on a live Streamlit dashboard — with AI-powered voice recommendations triggered by motion detection. (As IoT system has been disconected there
 
 **Demo video:** [YouTube — *( )*]
 
@@ -91,7 +91,7 @@ All secrets are passed as environment variables at deploy time. The middleware w
 | `BQ_DATASET` | middleware | no | BigQuery dataset name |
 | `BQ_TABLE` | middleware | no | BigQuery table name |
 
-**For the M5Stack device** — WiFi passwords and `PASSWD` in `device/main.py` must be set locally and **never pushed to Git**. Replace secret values with placeholders before committing:
+**For the M5Stack device** — WiFi passwords and `PASSWD` in `device/main.py` must be set locally. Replace secret values with placeholders before committing:
 
 ```python
 # device/main.py
