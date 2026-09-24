@@ -1,8 +1,8 @@
 # Smart Indoor Weather Station
 
-An IoT system that collects indoor environmental data (temperature, humidity, air quality) using an M5Stack CORE2 device, streams it to Google BigQuery via a Flask middleware, and visualises it on a live Streamlit dashboard — with AI-powered voice recommendations triggered by motion detection. (As IoT system has been disconected there
+An IoT system that collects indoor environmental data (temperature, humidity, air quality) using an M5Stack CORE2 device, streams it to Google BigQuery via a Flask middleware, and visualises it on a live Streamlit dashboard — with AI-powered voice recommendations triggered by motion detection. (The IoT device system has been disconnected)
 
-**Demo video:** [YouTube — *( )*]
+**Demo video:** [YouTube — * to do*]
 
 **Live dashboard:** https://weather-dashboard-297113273467.europe-west6.run.app
 
