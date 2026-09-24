@@ -163,4 +163,4 @@ The device connects to the strongest known WiFi, syncs the RTC via NTP, then beg
 
 ### AI use 
 
-Designed, integrated, and tested by the project members. Some components were partially or fully generated, improved and debugged using AI tools.
+Designed, integrated, and tested by the project members. The code and its comments were largely written and organised using AI tools.
